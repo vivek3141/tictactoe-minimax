@@ -18,8 +18,8 @@ class TicTacToe:
 
     def _move(self, inp):
         b = TicTacToe(self)
-        b.board[(inp - 1) // 3][(inp - 1) % 3] = " " + self.player + " "
-        (self.player, self.opponent) = (self.opponent, self.player)
+        b.board[(inp - 1) // 3][(inp - 1) % 3] = " " + b.player + " "
+        (b.player, b.opponent) = (b.opponent, b.player)
         return b
 
     def move(self, inp):
@@ -62,14 +62,14 @@ class TicTacToe:
         return False
 
     def check_game(self):
-        t = False
-        for i in self.board:
-            for k in i:
-                if k == "   ":
-                    t = True
-        if not t:
-            print("TIE")
-            return True
+        #t = False
+        # for i in self.board:
+        #    for k in i:
+        #        if k == "   ":
+        #            t = True
+        # if not t:
+        #    print("TIE")
+        #    return True
         for i in range(3):
             if self.board[i][0] != "   " and \
                     self.board[i][0] == self.board[i][1] and self.board[i][1] == self.board[i][2]:
@@ -96,23 +96,23 @@ class TicTacToe:
     def __str__(self):
         return "".join([x for i in self.board for x in ["".join([z for k in i for z in [k, "|"]][:-1]) +
                                                         "\n", "-----------" + "\n"]][:-1])
-    
+
     def best(self):
         return self._minimax(True)[1]
 
     def _minimax(self, player):
-        if self.won():
+        if self.check_game():
             if player:
                 return (-1, None)
             else:
                 return (+1, None)
-        elif self.tied():
+        elif self.tie():
             return (0, None)
         elif player:
             best = (-2, None)
             for i in range(9):
                 if self.board[i // 3][i % 3] == "   ":
-                    value = self.move(i).__minimax(not player)[0]
+                    value = self._move(i)._minimax(not player)[0]
                     if value > best[0]:
                         best = (value, i)
             return best
@@ -120,7 +120,7 @@ class TicTacToe:
             best = (+2, None)
             for i in range(9):
                 if self.board[i // 3][i % 3] == "   ":
-                    value = self.move(i).__minimax(not player)[0]
+                    value = self._move(i)._minimax(not player)[0]
                     if value < best[0]:
                         best = (value, i)
             return best
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     while True:
         t = t._move(int(input(":")))
         print(t)
-
         m = t.best()
         if m:
-            t._move(m)
+            t = t._move(m)
+            print(t)
