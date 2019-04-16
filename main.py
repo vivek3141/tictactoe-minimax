@@ -8,7 +8,19 @@ class TicTac(QtWidgets.QDialog):
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.ui.pb_1.clicked.connect(self.pb)
+        self.btns = [
+            self.ui.pb_1,
+            self.ui.pb_2,
+            self.ui.pb_3,
+            self.ui.pb_4,
+            self.ui.pb_5,
+            self.ui.pb_6,
+            self.ui.pb_7,
+            self.ui.pb_8,
+            self.ui.pb_9,
+        ]
+        for n in range(9):
+            self.btns[n].clicked.connect(lambda: self.pb(n))
         """QtCore.QObject.connect(
             self.ui.pb_1, QtCore.SIGNAL('clicked()'), self.pb(1))
         QtCore.QObject.connect(
@@ -27,10 +39,17 @@ class TicTac(QtWidgets.QDialog):
             self.ui.pb_8, QtCore.SIGNAL('clicked()'), self.pb8)
         QtCore.QObject.connect(
             self.ui.pb_9, QtCore.SIGNAL('clicked()'), self.pb9)"""
-        self.board = TicTacToe()
+        self.tic = TicTacToe()
 
     def pb(self, n):
-        print(n)
+        print(f"HELLO {n}")
+        self.tic.move(n)
+        self.update()
+
+    def update(self):
+        for i in range(9):
+            self.btns[i].setText(self.tic.board[i // 3][i % 3].strip())
+
 
 
 if __name__ == "__main__":
