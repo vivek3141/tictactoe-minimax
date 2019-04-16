@@ -84,7 +84,7 @@ if __name__ == "__main__":
     print(t)
 
     while True:
-        t = t._move(int(input(":")) - 1)
+        t = t.move(int(input(":")) - 1)
         m = t.best()
         t = t.move(m)
         print(t)
