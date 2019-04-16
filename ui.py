@@ -1,4 +1,4 @@
-import PyQt5# -*- coding: utf-8 -*-
+import PyQt5  # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'tictac.ui'
 #
@@ -14,7 +14,7 @@ class Ui_Dialog(object):
         Dialog.setObjectName("Dialog")
         Dialog.resize(259, 300)
         Dialog.setStyleSheet("\n"
-"")
+                             "")
         self.pb_3 = QtWidgets.QPushButton(Dialog)
         self.pb_3.setGeometry(QtCore.QRect(172, 62, 75, 51))
         font = QtGui.QFont()
@@ -104,7 +104,8 @@ class Ui_Dialog(object):
         self.pushButton.setObjectName("pushButton")
         self.graphicsView = QtWidgets.QGraphicsView(Dialog)
         self.graphicsView.setGeometry(QtCore.QRect(-55, -19, 341, 381))
-        self.graphicsView.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 178, 102, 255), stop:0.55 rgba(235, 148, 61, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0));")
+        self.graphicsView.setStyleSheet(
+            "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 178, 102, 255), stop:0.55 rgba(235, 148, 61, 255), stop:0.98 rgba(0, 0, 0, 255), stop:1 rgba(0, 0, 0, 0));")
         self.graphicsView.setObjectName("graphicsView")
         self.graphicsView.raise_()
         self.pb_3.raise_()
@@ -125,10 +126,9 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Tic Tac Toe</span></p></body></html>"))
+        self.label.setText(_translate(
+            "Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt;\">Tic Tac Toe</span></p></body></html>"))
         self.pushButton.setText(_translate("Dialog", "Reset"))
-
-
 
 
 if __name__ == "__main__":
