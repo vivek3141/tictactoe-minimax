@@ -22,6 +22,7 @@ class TicTac(QtWidgets.QDialog):
 
         for i, btn in enumerate(self.btns):
             btn.clicked.connect(lambda _, b=i: self.pb(b))
+        self.ui.pb_reset.clicked.connect(self.reset)
         self.tic = TicTacToe()
 
     def pb(self, n):
