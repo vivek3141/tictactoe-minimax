@@ -96,6 +96,9 @@ class TicTacToe:
     def __str__(self):
         return "".join([x for i in self.board for x in ["".join([z for k in i for z in [k, "|"]][:-1]) +
                                                         "\n", "-----------" + "\n"]][:-1])
+    
+    def best(self):
+        return self._minimax(True)[1]
 
     def _minimax(self, player):
         if self.won():
@@ -127,12 +130,9 @@ if __name__ == "__main__":
     t = TicTacToe()
 
     while True:
-        done = t.move(int(input(":")), "X")
+        t = t._move(int(input(":")))
         print(t)
-        if done:
-            break
 
-        done = t.move(int(input(":")), "O")
-        print(t)
-        if done:
-            break
+        m = t.best()
+        if m:
+            t._move(m)
