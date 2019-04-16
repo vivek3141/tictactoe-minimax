@@ -21,17 +21,26 @@ class TicTac(QtWidgets.QDialog):
         ]
 
         for i, btn in enumerate(self.btns):
-            btn.clicked.connect(self.pb)
+            btn.clicked.connect(lambda _, b=i: self.pb(b))
         self.tic = TicTacToe()
 
     def pb(self, n):
-        print(f"HELLO {n}")
-        self.tic.move(n)
+        if self.btns[n].text() == "":
+            self.tic = self.tic.move(n)
         self.update()
 
     def update(self):
         for i in range(9):
             self.btns[i].setText(self.tic.board[i // 3][i % 3].strip())
+        s = self.tic.check_game()
+        if s:
+            QtWidgets.QMessageBox.about(self, "Game Over!", s)
+            self.reset()
+    
+    def reset(self):
+        for i in range(9):
+            self.btns[i].setText("")
+        self.tic = TicTacToe()
 
 
 

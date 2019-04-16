@@ -23,6 +23,28 @@ class TicTacToe:
                     t = False
         return t
 
+    def check_game(self):
+        if self.tie():
+            return "TIE!"
+        for i in range(3):
+            if self.board[i][0] != "   " and \
+                    self.board[i][0] == self.board[i][1] and self.board[i][1] == self.board[i][2]:
+                return f"{self.board[i][0][1:]}has won!"
+
+            if self.board[0][i] != "   " and \
+                    self.board[0][i] == self.board[1][i] and self.board[1][i] == self.board[2][i]:
+                return f"{self.board[0][i][1:]}has won!"
+
+        if self.board[0][0] != "   " and \
+                self.board[0][0] == self.board[1][1] and self.board[1][1] == self.board[2][2]:
+            return f"{self.board[0][0][1:]}has won!"
+
+        if self.board[0][2] != "   " and \
+                self.board[0][2] == self.board[1][1] and self.board[1][1] == self.board[2][0]:
+            return f"{self.board[0][2][1:]}has won!"
+
+        return False
+
     def won(self):
         for i in range(3):
             if self.board[i][0] == f" {self.opponent} " and \
@@ -56,10 +78,10 @@ class TicTacToe:
                 return (-1, None)
             else:
                 return (1, None)
-    
+
         elif self.tie():
             return (0, None)
-        
+
         elif player:
             best = (-2, None)
             for i in range(9):
@@ -68,7 +90,7 @@ class TicTacToe:
                     if value > best[0]:
                         best = (value, i)
             return best
-        
+
         else:
             best = (2, None)
             for i in range(9):
