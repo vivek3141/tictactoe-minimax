@@ -10,25 +10,39 @@ class TicTacToe:
             self.move(inp)
 
     def move(self, inp, player="X"):
-        self.board[(inp - 1) // 3][(inp - 1) % 3] = " " + player + " "
+        if self.board[(inp - 1) // 3][(inp - 1) % 3] == "   ":
+            self.board[(inp - 1) // 3][(inp - 1) % 3] = " " + player + " "
+        else:
+            return None
         return self.check_game()
 
     def check_game(self):
-        print(self)
+        t = False
+        for i in self.board:
+            for k in i:
+                if k == "   ":
+                    t = True
+        if not t:
+            print("TIE")
+            return True
         for i in range(3):
-            if self.board[i][0] == self.board[i][1] and self.board[i][1] == self.board[i][2]:
+            if self.board[i][0] != "   " and \
+                self.board[i][0] == self.board[i][1] and self.board[i][1] == self.board[i][2]:
                 print(f"{self.board[i][0][1:]}has won!")
                 return True
 
-            if self.board[0][i] == self.board[1][i] and self.board[1][i] == self.board[2][i]:
+            if self.board[0][i] != "   " and \
+                self.board[0][i] == self.board[1][i] and self.board[1][i] == self.board[2][i]:
                 print(f"{self.board[0][i][1:]}has won!")
                 return True
         
-        if self.board[0][0] == self.board[1][1] and self.board[1][1] == self.board[2][2]:
+        if self.board[0][0] != "   " and \
+            self.board[0][0] == self.board[1][1] and self.board[1][1] == self.board[2][2]:
                 print(f"{self.board[0][0][1:]}has won!")
                 return True
         
-        if self.board[0][2] == self.board[1][1] and self.board[1][1] == self.board[2][09]:
+        if self.board[0][2] != "   " and \
+            self.board[0][2] == self.board[1][1] and self.board[1][1] == self.board[2][0]:
                 print(f"{self.board[0][2][1:]}has won!")
                 return True
         
@@ -41,12 +55,13 @@ class TicTacToe:
 
 if __name__ == "__main__":
     t = TicTacToe()
-    done = True
 
-    while done:
+    while True:
         done = t.move(int(input(":")), "X")
         print(t)
+        if done: break
 
         done = t.move(int(input(":")), "O")
         print(t)
+        if done: break
     
