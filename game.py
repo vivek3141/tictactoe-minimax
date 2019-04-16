@@ -18,7 +18,7 @@ class TicTacToe:
         pass
 
     def __str__(self):
-        return "".join([x for i in self.board for x in ["".join([k + "|" for k in i][:-1]) +
+        return "".join([x for i in self.board for x in ["".join([z for k in i for z in [k, "|"]][:-1]) +
                                                         "\n", "-----------" + "\n"]][:-1])
 
 
