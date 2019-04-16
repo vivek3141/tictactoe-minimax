@@ -4,7 +4,6 @@ from copy import deepcopy
 class TicTacToe:
     def __init__(self, other=None):
         self.board = [["   ", "   ", "   "] for i in range(3)]
-        self.start_game()
         self.player = "X"
         self.opponent = "O"
         if other:
@@ -18,7 +17,7 @@ class TicTacToe:
 
     def _move(self, inp):
         b = TicTacToe(self)
-        b.board[(inp - 1) // 3][(inp - 1) % 3] = " " + b.player + " "
+        b.board[inp // 3][inp % 3] = " " + b.player + " "
         (b.player, b.opponent) = (b.opponent, b.player)
         return b
 
@@ -39,24 +38,20 @@ class TicTacToe:
 
     def won(self):
         for i in range(3):
-            if self.board[i][0] == f" {self.player} " and \
+            if self.board[i][0] == f" {self.opponent} " and \
                     self.board[i][0] == self.board[i][1] and self.board[i][1] == self.board[i][2]:
-                print(f"{self.board[i][0][1:]}has won!")
                 return True
 
-            if self.board[0][i] == f" {self.player} " and \
+            if self.board[0][i] == f" {self.opponent} " and \
                     self.board[0][i] == self.board[1][i] and self.board[1][i] == self.board[2][i]:
-                print(f"{self.board[0][i][1:]}has won!")
                 return True
 
-        if self.board[0][0] == f" {self.player} " and \
+        if self.board[0][0] == f" {self.opponent} " and \
                 self.board[0][0] == self.board[1][1] and self.board[1][1] == self.board[2][2]:
-            print(f"{self.board[0][0][1:]}has won!")
             return True
 
-        if self.board[0][2] == f" {self.player} " and \
+        if self.board[0][2] == f" {self.opponent} " and \
                 self.board[0][2] == self.board[1][1] and self.board[1][1] == self.board[2][0]:
-            print(f"{self.board[0][2][1:]}has won!")
             return True
 
         return False
@@ -101,7 +96,7 @@ class TicTacToe:
         return self._minimax(True)[1]
 
     def _minimax(self, player):
-        if self.check_game():
+        if self.won():
             if player:
                 return (-1, None)
             else:
@@ -128,11 +123,11 @@ class TicTacToe:
 
 if __name__ == "__main__":
     t = TicTacToe()
+    print(t)
 
     while True:
-        t = t._move(int(input(":")))
-        print(t)
+        t = t._move(int(input(":")) - 1)
         m = t.best()
-        if m:
-            t = t._move(m)
-            print(t)
+        t = t._move(m)
+        print(t)
+        #print(t.won())
