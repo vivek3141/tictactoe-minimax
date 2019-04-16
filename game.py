@@ -3,7 +3,7 @@ class TicTacToe:
         self.board = [["   ", "   ", "   "] for i in range(3)]
         self.start_game()
 
-    def start_game(self, human=True):
+    def start_game(self, human=False):
         print(self)
         if human:
             inp = int(input("Make a move: "))
@@ -11,7 +11,7 @@ class TicTacToe:
 
     def move(self, inp, player="X"):
         self.board[(inp - 1) // 3][(inp - 1) % 3] = " " + player + " "
-        self.check_game()
+        return self.check_game()
 
     def check_game(self):
         print(self)
@@ -41,3 +41,12 @@ class TicTacToe:
 
 if __name__ == "__main__":
     t = TicTacToe()
+    done = True
+
+    while done:
+        done = t.move(int(input(":")), "X")
+        print(t)
+
+        done = t.move(int(input(":")), "O")
+        print(t)
+    
