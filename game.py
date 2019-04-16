@@ -86,7 +86,7 @@ class TicTacToe:
             best = (-2, None)
             for i in range(9):
                 if self.board[i // 3][i % 3] == "   ":
-                    value = self._move(i)._minimax(not(player))[0]
+                    value = self.move(i)._minimax(not(player))[0]
                     if value > best[0]:
                         best = (value, i)
             return best
@@ -95,7 +95,7 @@ class TicTacToe:
             best = (2, None)
             for i in range(9):
                 if self.board[i // 3][i % 3] == "   ":
-                    value = self._move(i)._minimax(not(player))[0]
+                    value = self.move(i)._minimax(not(player))[0]
                     if value < best[0]:
                         best = (value, i)
             return best
