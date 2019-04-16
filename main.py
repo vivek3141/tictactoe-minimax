@@ -21,24 +21,6 @@ class TicTac(QtWidgets.QDialog):
         ]
         for n in range(9):
             self.btns[n].clicked.connect(lambda: self.pb(n))
-        """QtCore.QObject.connect(
-            self.ui.pb_1, QtCore.SIGNAL('clicked()'), self.pb(1))
-        QtCore.QObject.connect(
-            self.ui.pb_2, QtCore.SIGNAL('clicked()'), self.pb2)
-        QtCore.QObject.connect(
-            self.ui.pb_3, QtCore.SIGNAL('clicked()'), self.pb3)
-        QtCore.QObject.connect(
-            self.ui.pb_4, QtCore.SIGNAL('clicked()'), self.pb4)
-        QtCore.QObject.connect(
-            self.ui.pb_5, QtCore.SIGNAL('clicked()'), self.pb5)
-        QtCore.QObject.connect(
-            self.ui.pb_6, QtCore.SIGNAL('clicked()'), self.pb6)
-        QtCore.QObject.connect(
-            self.ui.pb_7, QtCore.SIGNAL('clicked()'), self.pb7)
-        QtCore.QObject.connect(
-            self.ui.pb_8, QtCore.SIGNAL('clicked()'), self.pb8)
-        QtCore.QObject.connect(
-            self.ui.pb_9, QtCore.SIGNAL('clicked()'), self.pb9)"""
         self.tic = TicTacToe()
 
     def pb(self, n):
