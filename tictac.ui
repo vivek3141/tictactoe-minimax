@@ -255,7 +255,7 @@
   <zorder>pb_7</zorder>
   <zorder>pb_9</zorder>
   <zorder>pb_8</zorder>
-  <zorder>pushButton</zorder>
+  <zorder>pb_reset</zorder>
  </widget>
  <resources/>
  <connections/>
