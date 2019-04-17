@@ -28,10 +28,10 @@ class TicTac(QtWidgets.QDialog):
     def pb(self, n):
         if self.btns[n].text() == "":
             self.tic = self.tic.move(n)
-        self.update()
-        move = self.tic.best()
-        self.tic = self.tic.move(move)
-        self.update()
+            self.update()
+            move = self.tic.best()
+            self.tic = self.tic.move(move)
+            self.update()
 
     def update(self):
         for i in range(9):
