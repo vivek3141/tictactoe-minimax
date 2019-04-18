@@ -28,10 +28,10 @@ class TicTac(QtWidgets.QDialog):
     def pb(self, n):
         if self.btns[n].text() == "":
             self.tic = self.tic.move(n)
-            self.update()
-            move = self.tic.best()
-            self.tic = self.tic.move(move)
-            self.update()
+            if self.update():
+                move = self.tic.best()
+                self.tic = self.tic.move(move)
+                self.update()
 
     def update(self):
         for i in range(9):
@@ -40,11 +40,12 @@ class TicTac(QtWidgets.QDialog):
         if s:
             QtWidgets.QMessageBox.about(self, "Game Over!", s)
             self.reset()
+            return False
+        return True
     
     def reset(self):
-        for i in range(9):
-            self.btns[i].setText("")
         self.tic = TicTacToe()
+        self.update()
 
 
 
